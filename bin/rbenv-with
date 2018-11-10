@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#
+# Usage: rbenv with NAME command [arg ...]
+#
+# Switches Ruby versions for the duration of one command.
+
+set -e
+[ -n "$RBENV_DEBUG" ] && set -x
+
+if ! type rbenv-whatis &>/dev/null; then
+  echo "rbenv-whatis plugin not installed, please run:" >&2
+  echo -e "\n\tgit clone https://github.com/toy/rbenv-whatis.git $RBENV_ROOT/plugins/whatis\n" >&2
+  exit 1
+fi
+
+# Provide rbenv completions
+if [ "$1" = "--complete" ]; then
+  echo system
+  exec rbenv-versions --bare
+fi
+
+case $# in
+  0|1)
+    echo "usage: rbenv with NAME command [arg ...]" >&2
+    exit 1
+    ;;
+esac
+
+ruby=$(command rbenv whatis --installed "$1")
+shift
+
+RBENV_VERSION="$ruby" "$@"
