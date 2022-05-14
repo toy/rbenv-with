@@ -25,9 +25,9 @@ rbenv with 2.0 ruby -v
 Run these commands:
 
 ```shell
-mkdir -p "$RBENV_ROOT/plugins"
-git clone https://github.com/toy/rbenv-whatis.git "$RBENV_ROOT/plugins/whatis"
-git clone https://github.com/toy/rbenv-with.git "$RBENV_ROOT/plugins/with"
+mkdir -p "$(rbenv root)"/plugins
+git clone https://github.com/toy/rbenv-whatis.git "$(rbenv root)"/plugins/whatis
+git clone https://github.com/toy/rbenv-with.git "$(rbenv root)"/plugins/with
 ```
 
 Skip the first `git clone` if you already installed [rbenv-whatis](https://github.com/toy/rbenv-whatis).
